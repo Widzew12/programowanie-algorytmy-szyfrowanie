@@ -49,8 +49,41 @@ Szyfrowanie kluczem publicznym opiera się na tym, że istnieją tak naprawdę d
 Można sobie to wyobrazić w następujący sposób: klucz publiczny jest kłódką, którą Alicja - odbiorca wiadomości - daje Bobowi - nadawcy (udostępnia publicznie). Klucz prywatny jest kluczem do tej kłódki. W ten sposób, jeżeli Bob chce wysłać wiadomość do Alicji, wystarczy że zamknie swoją wiadomość na tę kłódkę (zaszyfruje ją kluczem publicznym). Jedyną osobą, która będzie w stanie otworzyć kłódkę i odczytać wiadomość, jest Alicja.  
 
 ### Jak to działa?
-Kryptografia asymetryczna opiera sie na funkcjach jednokierunkowych. Są to działania, które łatwo da się wykonać w jedną stronę, a trudno jest wykonać w drugą. Są to na przykład mnożenie (łatwe) i faktoryzacja - rozkład na czynniki (trudne), albo potęgowanie modulo (łatwe) i logarytmowanie dyskretne (trudne).
+Kryptografia asymetryczna opiera się na funkcjach jednokierunkowych. Są to działania, które łatwo da się wykonać w jedną stronę, a trudno jest wykonać w drugą. Są to na przykład mnożenie (łatwe) i faktoryzacja - rozkład na czynniki (trudne), albo potęgowanie modulo (łatwe) i logarytmowanie dyskretne (trudne).
 
 ### Protokół Diffiego-Hellmana (Diffie-Hellman key exchange, DH)
 Protokół Diffiego-Hellmana to jeden z pierwszych protokołów klucza publicznego. Nie jest algorytmem szyfrującym - to protokół służący do ustalenia wspólnego tajnego klucza przy użyciu publicznych środków komunikacji. Jego działanie można przedstawić w bardziej zrozumiały sposób za pomocą analogii [mieszania kolorów](images/image_1.png).
+
+1. Alicja i Bob uzgadniają liczbę pierwszą $p$ (np. $23$) i podstawę $g$ (np. $5$).  
+
+2. Alicja wybiera tajną liczbę całkowitą $a$ (np. $6$), i wysyła Bobowi $A = g^{a} \mod p$  
+$A = 5^{6} \mod 23$  
+$A = 15\ 625 \mod 23$  
+$A = 8$  
+3. Bob wybiera tajną liczbę całkowitą $b$ (np. $15$), i wysyła Alicji $B = g^{b} \mod p$  
+$B = 5^{15} \mod 23$  
+$B = 30\ 517\ 578\ 125 \mod 23$  
+$B = 19$  
+4. Alicja oblicza $s = B^{a} \mod p$, czyli $s = (g^{b})^{a} \mod p$  
+$s = 19^{6} \mod 23$  
+$s = 47\ 045\ 881 \mod 23$  
+$s = 2$  
+5. Bob oblicza $s = A^{b} \mod p$, czyli $s = (g^{a})^{b} \mod p$  
+$s = 8^{15} \mod 23$  
+$s = 35\ 184\ 372\ 088\ 832 \mod 23$  
+$s = 2$  
+6. Alicja i Bob posiadają wspólną tajną liczbę: $s$ (tutaj: $2$).  
+Wynika to z tego, że $(g^{a})^{b} = (g^{b})^{a}$, więc $(g^{a})^{b}$ oraz $(g^{b})^{a}$ są przystające $\mod p$  
+
+Jedynymi wartościami poza $s$ pozostającymi w sekrecie są $a$, $b$ oraz $g^{ab} = g^{ba} \mod p$. Pozostałe wartości są wysyłane jawnie. 
+
+Jeśli ktoś znałby jednocześnie obie tajne wartości $a$ i $b$, to mógłby obliczyć $s$:  
+$s = 5^{6 ⋅ 15} \mod 23$  
+$s = 5^{15 ⋅ 6} \mod 23$  
+$s = 5^{90} \mod 23$  
+$s = 807\ 793\ 566\ 946\ 316\ 088\ 741\ 610\ 050\ 849\ 573\ 099\ 185\ 363\ 389\ 551\ 639\ 556\ 884\ 765\ 625 \mod 23$  
+$s = 2$   
+
+Dla stosunkowo małych liczb $a$, $b$ i $p$, odgadnięcie $a$ i $b$ poprzez sprawdzenie wszystkich możliwości działania $g^{ab}\mod 23$ nie jest dużym problemem.  
+Dlatego, w celu zapewnienia odpowiedniego poziomu bezpieczeństwa, $p$ powinno być liczbą (pierwszą) o długości około 300 cyfr w systemie dziesiętnym, a $a$ i $b$ o długości około 100 cyfr. W ten sposób, nawet przy użyciu ogromnej mocy obliczeniowej, znalezienie $a$ i $b$ w sensownym czasie nie jest możliwe. Ten problem jest znany jako logarytm dyskretny.
 
