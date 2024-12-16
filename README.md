@@ -1,11 +1,18 @@
 # Kryptografia klucza publicznego
 
 ## Wstęp
+<details>
+<summary>Co to jest szyfrowanie?</summary>
 
 ### Co to jest szyfrowanie?
 Najprościej mówiąc, szyfrowanie to proces zabezpieczania informacji, tak aby były zrozumiałe tylko dla uprawnionych.
 Służy zachowaniu poufności przesyłanych danych - tylko osoby posiadające specjalny "klucz" mogą odtworzyć oryginalny tekst.
 Szyfrując i deszyfrując jakąś informację (to znaczy zamieniając **tekst jawny** na **tekst zaszyfrowany** - **szyfrogram**) posługujemy się odpowiednim **algorytmem** oraz właśnie takim **kluczem**.
+
+</details>
+
+<details>
+<summary>Najprostszy szyfr - szyfr cezara</summary>
 
 ### Najprostszy szyfr - szyfr cezara
 Jednym z najprostszych i zarazem najstarszych szyfrów (był używany już w starożytności przez Juliusza Cezara w prywatnej korespondencji - stąd jego nazwa) jest **szyfr cezara** (zwany również szyfrem przesuwającym).
@@ -14,8 +21,18 @@ Na przykład jeżeli parametr przesunięcia wynosi `3`, to każdą literę `A` z
 
 Jednak złamanie takiego szyfru nie stanowi obecnie żadnego problemu. Z pomocą komputerów można z łatwością łamać szyfry dużo bardziej skomplikowane od szyfru cezara. 
 
+</details>
+
+<details>
+<summary>Współcześnie używany szyfr - AES</summary>
+
 ### Współcześnie używany szyfr - AES
 Dlatego we współczesnej kryptografii używa się szyfrów o znacznie większym stopniu skomplikowania, na przykład [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) - nowoczesny algorytm szyfrujący, opublikowany w 1998 r. i przyjęty m.in. przez amerykański *National Inistitute of Standards and Technology* (NIST) w 2001 r., który stał się powszechnie używanym standardem.
+
+</details>
+
+<details>
+<summary>Wszystko przez ten Internet...</summary>
 
 ### Wszystko przez ten Internet...
 
@@ -30,6 +47,7 @@ Jednak tutaj pojawia się problem: trzeba nawiązać komunikację między dwoma 
 Wymiana kluczy w bezpieczny sposób nagle nie jest możliwa, a przesłanie ich przez publiczne połączenie generuje potencjalne ryzyko ich przechwycenia.  
 Tutaj z pomocą przychodzi kryptografia klucza publicznego.  
 
+</details>
 
 ## Rodzaje algorytmów kryptograficznych
 
