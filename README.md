@@ -144,7 +144,7 @@ Dla $n$, gdzie $n = pq$, a $p$ i $q$ to liczby pierwsze, $\phi (n) = (p-1)(q-1)$
 Wartość tej funkcji pozostaje tajna.
 4. Wybieramy liczbę naturalną $e$, gdzie $1 < e < \phi (n)$ oraz $NWD(e,\ \phi (n)) = 1$ (czyli liczby $e$ i $\phi (n)$ są względnie pierwsze). Powinna być ona stosunkowo nieduża, najczęściej wybieraną wartością jest $2^{16} + 1 = 65\ 537$.  
 Liczba $e$ staje się częścią klucza publicznego.
-5. Obliczamy $d$ ze wzoru $d\equiv e^{-1}\ (\mod \phi (n)\ )$ ($d$ jest odwrotnością modularną liczby $e$), albo: $de\equiv 1\ (\mod \phi(n)\ )$  
+5. Wybieramy $d$ spełniające zależność: $d\equiv e^{-1}\ (\mod \phi (n)\ )$ ($d$ jest odwrotnością modularną liczby $e$), albo: $de\equiv 1\ (\mod \phi(n)\ )$  
 Liczba $d$ staje się częścią klucza prywatnego.  
 
 Teraz Alicja może przesłać swój klucz publiczny Bobowi, który za jego pomocą zaszyfruje wiadomość, którą będzie można odszyfrować tylko za pomocą klucza prywatnego Alicji.
